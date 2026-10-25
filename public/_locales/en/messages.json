@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "tokotter — Inspect, Tokens & Page Clones",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Inspect any page, extract design tokens and page clones. 100% local: no account, no server.",
+    "description": "Extension description"
+  }
+}

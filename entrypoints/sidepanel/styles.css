@@ -1,0 +1,96 @@
+/* tokotter panel theme — River Teal + Drift Amber on Paper. */
+:root {
+  --toko-river: #0e7c86;
+  --toko-deep: #103b40;
+  --toko-amber: #f5a524;
+  --toko-paper: #f7f5ef;
+  --toko-card: #ffffff;
+  --toko-line: #e4ded2;
+  --toko-ink: #17272a;
+  --toko-muted: #5c6b6e;
+  --toko-success: #15803d;
+  --toko-danger: #b91c1c;
+  --toko-radius: 10px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--toko-paper);
+  color: var(--toko-ink);
+  font: 400 13px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+#app { display: flex; flex-direction: column; height: 100%; }
+
+.toko-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; background: var(--toko-deep); color: #fff;
+}
+.toko-brand { display: flex; align-items: center; gap: 9px; min-width: 0; }
+.toko-mark { width: 30px; height: 30px; flex: none; }
+.toko-name { font-weight: 800; font-size: 15px; letter-spacing: 0.01em; }
+.toko-tagline { font-size: 10.5px; color: #cfe3e4; }
+.toko-locale {
+  margin-left: auto; background: transparent; color: #fff;
+  border: 1px solid #ffffff55; border-radius: 7px; padding: 4px 6px; font: inherit;
+}
+.toko-locale option { color: #111; }
+
+.toko-tabs {
+  display: flex; gap: 2px; padding: 6px 8px 0;
+  background: var(--toko-deep); border-top: 1px solid #ffffff22;
+}
+.toko-tabs [role="tab"] {
+  flex: 1; border: 0; border-radius: 8px 8px 0 0; cursor: pointer;
+  padding: 8px 2px; font: 600 12px/1 inherit; color: #cfe3e4; background: transparent;
+}
+.toko-tabs [role="tab"][aria-selected="true"] {
+  background: var(--toko-paper); color: var(--toko-deep);
+}
+.toko-view { flex: 1; overflow-y: auto; padding: 12px; }
+
+.toko-card {
+  background: var(--toko-card); border: 1px solid var(--toko-line);
+  border-radius: var(--toko-radius); padding: 12px; margin-bottom: 10px;
+  box-shadow: 0 1px 2px #103b4014;
+}
+.toko-card h3 { margin: 0 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--toko-muted); }
+.toko-url { font-size: 12px; color: var(--toko-muted); word-break: break-all; margin: 0 0 8px; }
+
+.toko-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 38px; width: 100%; border: 0; border-radius: 9px; cursor: pointer;
+  background: var(--toko-river); color: #fff; font: 700 13px/1 inherit;
+}
+.toko-btn:hover { filter: brightness(0.94); }
+.toko-btn:disabled { opacity: 0.55; cursor: wait; }
+.toko-btn.secondary { background: var(--toko-deep); }
+.toko-btn.ghost { background: transparent; color: var(--toko-river); border: 1px solid var(--toko-river); width: auto; padding: 0 12px; min-height: 32px; }
+.toko-btn.warn { background: var(--toko-danger); }
+.toko-row { display: flex; gap: 8px; margin-top: 8px; }
+.toko-row .toko-btn { width: auto; flex: 1; }
+
+.toko-note { font-size: 12px; color: var(--toko-muted); }
+.toko-error { font-size: 12px; color: var(--toko-danger); font-weight: 600; }
+.toko-ok { font-size: 12px; color: var(--toko-success); font-weight: 600; }
+
+.toko-pin { border-left: 4px solid var(--toko-amber); }
+.toko-pin dl { margin: 6px 0; font-size: 12px; }
+.toko-pin dt { font-weight: 700; color: var(--toko-muted); }
+.toko-pin dd { margin: 0 0 6px; word-break: break-all; font-family: ui-monospace, monospace; font-size: 11.5px; }
+
+.toko-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.toko-list li { display: flex; gap: 8px; align-items: center; }
+.toko-list .meta { flex: 1; min-width: 0; }
+.toko-list .meta b { display: block; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.toko-list .meta span { font-size: 11.5px; color: var(--toko-muted); }
+.toko-list button { width: auto; padding: 0 10px; min-height: 30px; font-size: 12px; }
+
+.toko-toast {
+  position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 50;
+  background: var(--toko-deep); color: #fff; border-radius: 9px;
+  padding: 9px 12px; font-size: 12.5px; box-shadow: 0 4px 14px #0006;
+}
+.toko-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 4px; border: 1px solid #0003; vertical-align: -1px; margin-right: 4px; }
+.toko-kv { font-size: 12px; margin: 2px 0; }
+select.toko-select { font: inherit; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--toko-line); background: #fff; }

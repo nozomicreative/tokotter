@@ -1,0 +1,46 @@
+{
+  "name": "tokotter",
+  "version": "0.1.0",
+  "description": "tokotter — Token + Otter. Inspect web design, extract design tokens, and analyze page structures for rapid prototyping and mockups. 100% local, privacy-first Chrome extension.",
+  "license": "MIT",
+  "author": "Nozomi Creative (https://nozomicreative.com)",
+  "homepage": "https://nozomicreative.github.io/tokotter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nozomicreative/tokotter.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "design-tokens",
+    "inspect-element",
+    "web-design",
+    "prototyping",
+    "mockups",
+    "color-palette-extractor",
+    "typography-analyzer",
+    "tailwind-css",
+    "ai-web-design",
+    "ui-ux",
+    "devtools"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "zip": "wxt zip",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "clean": "rimraf .output"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "wxt": "^0.19.9",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8",
+    "@types/chrome": "^0.0.280",
+    "rimraf": "^6.0.1"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2"
+  }
+}

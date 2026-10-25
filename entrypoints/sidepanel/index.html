@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>tokotter</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="toko-head">
+        <div class="toko-brand" aria-label="tokotter">
+          <svg class="toko-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="16" r="14" fill="#0e7c86" />
+            <circle cx="11" cy="14" r="3.2" fill="#f7f5ef" />
+            <circle cx="21" cy="14" r="3.2" fill="#f7f5ef" />
+            <rect x="9" y="20" width="14" height="4.6" rx="2.3" fill="#f5a524" />
+          </svg>
+          <div>
+            <div class="toko-name">tokotter</div>
+            <div class="toko-tagline" data-i18n="app.tagline"></div>
+          </div>
+        </div>
+        <select id="locale" class="toko-locale" aria-label="Language">
+          <option value="en">English</option>
+          <option value="ja">日本語</option>
+        </select>
+      </header>
+
+      <nav class="toko-tabs" role="tablist" aria-label="tokotter">
+        <button role="tab" data-tab="inspect" data-i18n="tab.inspect"></button>
+        <button role="tab" data-tab="tokens" data-i18n="tab.tokens"></button>
+        <button role="tab" data-tab="clone" data-i18n="tab.clone"></button>
+        <button role="tab" data-tab="library" data-i18n="tab.library"></button>
+        <button role="tab" data-tab="settings" data-i18n="tab.settings"></button>
+      </nav>
+
+      <main id="view" class="toko-view"></main>
+      <div id="toast" class="toko-toast" role="status" hidden></div>
+    </div>
+    <script type="module" src="main.ts"></script>
+  </body>
+</html>

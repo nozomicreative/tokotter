@@ -1,0 +1,10 @@
+{
+  "extName": {
+    "message": "tokotter — 検証・トークン・ページクローン",
+    "description": "拡張機能名"
+  },
+  "extDescription": {
+    "message": "ページを検証し、デザイントークンとページクローンを抽出。完全ローカル: アカウント不要・サーバ不要。",
+    "description": "拡張機能の説明"
+  }
+}
