@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>tokotter — Webデザイン調査・デザイントークン抽出 Chrome拡張機能</title>
+  <meta name="description" content="tokotter（トコッター）は、Webデザインの構造解析、デザイントークン抽出、AIプロトタイピングを加速する完全ローカル完結型Chrome拡張機能です。企画・開発: Nozomi Creative" />
+  <meta name="keywords" content="tokotter, Chrome拡張機能, デザイントークン, Webデザイン, CSS抽出, モックアップ作成, AI Web制作, カラーパレット抽出, のぞみクリエイティブ, Nozomi Creative" />
+  <meta property="og:title" content="tokotter — Webデザイン調査・デザイントークン抽出 Chrome拡張機能" />
+  <meta property="og:description" content="Webデザインの構造解析、デザイントークン抽出、AIプロトタイピングを加速する完全ローカル完結型Chrome拡張機能。" />
+  <meta property="og:image" content="./banner.png" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="./icon.png" type="image/png" />
+  <style>
+    :root {
+      --river: #0E7C86;
+      --deep: #103B40;
+      --amber: #F59E0B;
+      --paper: #F7F5EF;
+      --card: #FFFFFF;
+      --line: #E4DED2;
+      --ink: #17272A;
+      --muted: #5C6B6E;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--river); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    /* Header */
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--deep);
+    }
+    .logo-img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+    .btn-github {
+      background: var(--deep);
+      color: #fff !important;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .btn-github:hover {
+      background: var(--river);
+      text-decoration: none;
+    }
+    /* Hero */
+    .hero {
+      padding: 48px 0 32px;
+      text-align: center;
+    }
+    .banner-wrapper {
+      margin-bottom: 32px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(16, 59, 64, 0.08);
+      border: 1px solid var(--line);
+    }
+    .banner-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      color: var(--deep);
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 auto 28px;
+    }
+    .badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    /* Section */
+    section {
+      padding: 48px 0;
+    }
+    h2 {
+      font-size: 1.7rem;
+      color: var(--deep);
+      margin-bottom: 24px;
+      border-left: 4px solid var(--river);
+      padding-left: 14px;
+    }
+    /* Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(16, 59, 64, 0.04);
+    }
+    .card h3 {
+      color: var(--deep);
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+    /* Features list */
+    .features-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .feature-item {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .feature-item h4 {
+      color: var(--river);
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .feature-item p {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    /* Steps */
+    .steps {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .step:last-child { margin-bottom: 0; }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--river);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .step-body h4 {
+      font-size: 1.05rem;
+      color: var(--deep);
+      margin-bottom: 6px;
+    }
+    .step-body p, .step-body pre {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    pre {
+      background: #101c1e;
+      color: #eef4f4;
+      padding: 12px 16px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 8px 0;
+      font-size: 0.88rem;
+    }
+    /* Creator Box */
+    .creator-box {
+      background: linear-gradient(135deg, #103B40 0%, #0E7C86 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 36px;
+      text-align: center;
+      margin: 48px 0;
+    }
+    .creator-box h3 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+    .creator-box p {
+      max-width: 680px;
+      margin: 0 auto 24px;
+      font-size: 1.05rem;
+      opacity: 0.92;
+      line-height: 1.7;
+    }
+    .creator-box .btn-visit {
+      background: var(--amber);
+      color: #103B40;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 8px;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .creator-box .btn-visit:hover {
+      opacity: 0.9;
+      text-decoration: none;
+    }
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--line);
+      background: var(--card);
+      padding: 32px 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--river); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-inner">
+      <div class="logo-area">
+        <img src="./icon.png" alt="tokotter icon" class="logo-img" />
+        <span>tokotter</span>
+      </div>
+      <div class="nav-links">
+        <a href="#cases">活用シーン</a>
+        <a href="#features">機能一覧</a>
+        <a href="#install">導入方法</a>
+        <a href="https://github.com/nozomicreative/tokotter" target="_blank" class="btn-github">
+          GitHub リポジトリ
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero">
+      <div class="banner-wrapper">
+        <img src="./banner.png" alt="tokotter — Token + Otter" />
+      </div>
+      <h1>Webデザインの構造解析・デザイントークン抽出<br>AIプロトタイピングを加速するChrome拡張機能</h1>
+      <p>ネット上の優れたWebサイトから配色・フォント・余白をワンクリックで抽出。AIツール（Claude, ChatGPT, Cursor, v0）と協調し、高品質なモックアップ作成や自社サイトの改善に役立てます。</p>
+      <div class="badges">
+        <span style="background:#0E7C86;color:#fff;padding:4px 10px;border-radius:20px;font-size:0.85rem;font-weight:600;">100% 完全ローカル完結</span>
+        <span style="background:#103B40;color:#fff;padding:4px 10px;border-radius:20px;font-size:0.85rem;font-weight:600;">外部サーバ通信ゼロ</span>
+        <span style="background:#F59E0B;color:#103B40;padding:4px 10px;border-radius:20px;font-size:0.85rem;font-weight:700;">MIT オープンソース</span>
+      </div>
+    </div>
+
+    <section id="cases">
+      <h2>各機能の使い道（インスピレーションを形にする）</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>⚡ 1. モックアップ・プロトタイプ作成用</h3>
+          <p>
+            参考サイトの洗練されたUIレイアウトやカラースキームを瞬時に解析。抽出された <code>DESIGN.md</code> と <code>tokens.json</code> をAIに読み込ませ、「このデザイン体系をベースに新しいランディングページのモックアップを作って」と指示するだけで、完成度の高いワイヤーフレームやコンポーネントが即座に生成されます。
+          </p>
+        </div>
+        <div class="card">
+          <h3>🎨 2. 自身のWebサイトへの適用・改善</h3>
+          <p>
+            「このサイトの余白感やコントラストが美しい」と感じたとき、そのCSSカスタムプロパティやTailwind CSS v4（<code>@theme</code>）トークンを抽出。AIと連携して自身の既存Webサイトのボタンスタイルやタイポグラフィに調和させることで、洗練されたデザインへと素早くブラッシュアップできます。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2>主要機能（サイドパネルで完結）</h2>
+      <div class="features-list">
+        <div class="feature-item">
+          <h4>🔍 Inspect（要素調査）</h4>
+          <p>ページ上の要素をホバーするだけでボックスモデルや算出CSSをハイライト。ピン留めした要素のCSSを即座にコピー。</p>
+        </div>
+        <div class="feature-item">
+          <h4>💎 Tokens（9ファイル出力）</h4>
+          <p>カラーパレット、フォント、余白、角丸、シャドウを自動解析。Tailwind v4、SCSS、TypeScript型定義、WCAG適合表を一括ZIP出力。</p>
+        </div>
+        <div class="feature-item">
+          <h4>📦 Clone（静的複製）</h4>
+          <p>DOMとスタイルをブラウザ内で収集した静的リファレンスを生成。レスポンシブ幅切り替えビューアー（viewer.html）を同梱。</p>
+        </div>
+        <div class="feature-item">
+          <h4>📚 Library（履歴管理）</h4>
+          <p>生成したトークンパックの履歴をブラウザ内IndexedDBに保存。いつでも再ダウンロードや管理が可能です。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="install">
+      <h2>インストール方法（Chrome デベロッパーモード）</h2>
+      <p style="margin-bottom: 20px; color: var(--muted);">本拡張機能はオープンソースとして提供されており、Chromeのデベロッパーモードから直接読み込んでご利用いただけます。</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>リポジトリのクローンまたはダウンロード</h4>
+            <pre>git clone https://github.com/nozomicreative/tokotter.git
+cd tokotter</pre>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>依存関係のインストールとビルド</h4>
+            <pre>npm install
+npm run build</pre>
+            <p>※ <code>.output/chrome-mv3</code> フォルダが生成されます。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Chromeのデベロッパーモードで読み込み</h4>
+            <p>Chromeで <code>chrome://extensions</code> を開き、右上の「デベロッパーモード」をONにします。「パッケージ化されていない拡張機能を読み込む」をクリックし、生成された <code>.output/chrome-mv3</code> フォルダを選択すればインストール完了です。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="creator-box">
+      <h3>Produced by Nozomi Creative</h3>
+      <p>
+        tokotter は、Web制作・UI/UXデザイン・デジタルプロダクト開発スタジオ <strong>Nozomi Creative (のぞみクリエイティブ)</strong> が企画・開発したオープンソースツールです。<br>
+        成果を生み出すWebサイト制作やデザインリニューアルのご相談は、公式サイトよりお気軽にお問い合わせください。
+      </p>
+      <a href="https://nozomicreative.com" target="_blank" class="btn-visit">
+        nozomicreative.com を訪れる →
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 <a href="https://nozomicreative.com" target="_blank">Nozomi Creative</a>. Released under the MIT License.</p>
+      <p style="margin-top: 8px;"><a href="https://github.com/nozomicreative/tokotter" target="_blank">GitHub Repository</a> | <a href="https://nozomicreative.com" target="_blank">nozomicreative.com</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
