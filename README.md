@@ -97,35 +97,39 @@ tokotter runs entirely in a dedicated Chrome Side Panel across five specialized 
 
 ---
 
-### Installation Guide (Developer Mode)
+### Installation Guide
 
-Because tokotter is a privacy-first open-source developer utility distributed outside the Chrome Web Store, install it using Chrome's **Developer Mode**:
+#### Quick Install (Recommended: Pre-built ZIP, No Node.js Required)
 
-#### Step 1: Clone or Download the Repository
-Clone via Git:
-```bash
-git clone https://github.com/nozomicreative/tokotter.git
-cd tokotter
-```
-*(Or click **Code > Download ZIP** on GitHub and extract the archive to a local folder).*
+1. **Download the ZIP**:  
+   Download the latest pre-built package:  
+   👉 **[Download tokotter-0.1.0-chrome.zip](https://github.com/nozomicreative/tokotter/releases/latest/download/tokotter-0.1.0-chrome.zip)**
+2. **Extract the ZIP**:  
+   Unpack the downloaded `.zip` file into any folder on your computer.
+3. **Load into Google Chrome**:  
+   - Open Chrome and navigate to `chrome://extensions`.
+   - In the top-right corner, toggle **Developer mode** to **ON**.
+   - In the top-left corner, click **Load unpacked**.
+   - Select the unzipped folder (the folder containing `manifest.json`).
+4. **Done!** Pin the tokotter icon in your toolbar for instant access.
 
-#### Step 2: Install Dependencies & Build
-Ensure you have [Node.js](https://nodejs.org/) (v20 or newer) installed:
-```bash
-npm install
-npm run build
-```
-This compiles the extension into the `.output/chrome-mv3` directory.
+---
 
-#### Step 3: Load into Google Chrome
-1. Open Google Chrome and navigate to:
-   ```text
-   chrome://extensions
+#### Advanced: Build from Source (For Developers)
+
+If you wish to modify the code or build from source:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/nozomicreative/tokotter.git
+   cd tokotter
    ```
-2. In the top-right corner, toggle the **Developer mode** switch to **ON**.
-3. In the top-left corner, click the **Load unpacked** button.
-4. Select the `.output/chrome-mv3` directory inside your `tokotter` project folder.
-5. tokotter is now installed! Pin the extension icon to your Chrome toolbar for quick access.
+2. Install dependencies & build:
+   ```bash
+   npm install
+   npm run build
+   ```
+3. In `chrome://extensions` with Developer mode ON, click **Load unpacked** and select the `.output/chrome-mv3` folder.
 
 ---
 
@@ -243,35 +247,40 @@ tokotterは、Chromeのサイドパネル内で動作し、5つのタブを提�
 
 ---
 
-### インストール方法（デベロッパーモードでの導入）
+### インストール方法
 
-本拡張機能は、Chromeウェブストアを介さず、オープンソースとしてGitHub上で公開されています。以下の手順に従って、Chromeの**デベロッパーモード**からインストールしてください。
+#### かんたんインストール（推奨：ZIPを解凍するだけ・Node.js不要）
 
-#### ステップ 1: リポジトリのクローン（またはダウンロード）
-Gitコマンドでローカルにクローンします：
-```bash
-git clone https://github.com/nozomicreative/tokotter.git
-cd tokotter
-```
-*(Gitをお使いでない場合は、GitHubページの「Code」緑色ボタンから「Download ZIP」をクリックし、任意のフォルダに解凍してください)*
+プログラミング環境やNode.jsがなくても、**ZIPをダウンロードして解凍するだけで誰でも30秒で導入できます。**
 
-#### ステップ 2: 依存パッケージのインストールとビルド
-PCに [Node.js](https://nodejs.org/)（v20以上推奨）がインストールされていることを確認し、ターミナルで実行します：
-```bash
-npm install
-npm run build
-```
-ビルドが成功すると、プロジェクト内に `.output/chrome-mv3` というフォルダが生成されます。
+1. **ZIPファイルのダウンロード**:  
+   👉 **[tokotter-0.1.0-chrome.zip（最新版ZIP）をダウンロード](https://github.com/nozomicreative/tokotter/releases/latest/download/tokotter-0.1.0-chrome.zip)**
+2. **ZIPを解凍**:  
+   ダウンロードしたZIPファイルをPCのお好きなフォルダに解凍（展開）します。
+3. **Google Chrome に読み込み**:  
+   - Chromeを開き、アドレスバーに `chrome://extensions` と入力してEnter。
+   - 右上の **「デベロッパー モード」** のトグルを **ON** にします。
+   - 左上の **「パッケージ化されていない拡張機能を読み込む」** をクリック。
+   - 先ほど解凍したフォルダ（`manifest.json` が入っているフォルダ）を選択します。
+4. **完了！** ツールバーのパズルアイコンから tokotter をピン留めしておくと便利です。
 
-#### ステップ 3: Google Chrome への読み込み
-1. Google Chrome を開き、アドレスバーに以下を入力してEnterを押します：
-   ```text
-   chrome://extensions
+---
+
+#### 開発者向け：ソースコードからビルドする場合
+
+コードを変更したり自身でビルドしたい場合は、以下の手順で行えます：
+
+1. リポジトリをクローン：
+   ```bash
+   git clone https://github.com/nozomicreative/tokotter.git
+   cd tokotter
    ```
-2. 画面右上にある **「デベロッパー モード」** のトグルスイッチを **ON** にします。
-3. 画面左上に表示される **「パッケージ化されていない拡張機能を読み込む」** ボタンをクリックします。
-4. ファイル選択ダイアログで、先ほどビルドで生成された **`.output/chrome-mv3`** フォルダを選択します。
-5. これで tokotter のインストールは完了です！ツールバーのパズルアイコンから tokotter をピン留めしておくと便利です。
+2. 依存関係のインストールとビルド：
+   ```bash
+   npm install
+   npm run build
+   ```
+3. Chromeの `chrome://extensions`（デベロッパーモードON）で「パッケージ化されていない拡張機能を読み込む」を押し、`.output/chrome-mv3` フォルダを選択します。
 
 ---
 

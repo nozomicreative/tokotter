@@ -300,6 +300,11 @@
         <span style="background:#103B40;color:#fff;padding:4px 10px;border-radius:20px;font-size:0.85rem;font-weight:600;">外部サーバ通信ゼロ</span>
         <span style="background:#F59E0B;color:#103B40;padding:4px 10px;border-radius:20px;font-size:0.85rem;font-weight:700;">MIT オープンソース</span>
       </div>
+      <div style="margin-top: 16px;">
+        <a href="./tokotter-chrome.zip" download="tokotter-chrome.zip" style="background: #0E7C86; color: #fff; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 14px rgba(14, 124, 134, 0.35); text-decoration: none;">
+          ⬇️ ZIPをダウンロード（今すぐ使う / Node.js不要）
+        </a>
+      </div>
     </div>
 
     <section id="cases">
@@ -343,34 +348,45 @@
     </section>
 
     <section id="install">
-      <h2>インストール方法（Chrome デベロッパーモード）</h2>
-      <p style="margin-bottom: 20px; color: var(--muted);">本拡張機能はオープンソースとして提供されており、Chromeのデベロッパーモードから直接読み込んでご利用いただけます。</p>
+      <h2>インストール方法（ZIPを解凍して読み込むだけ）</h2>
+      <p style="margin-bottom: 24px; color: var(--muted);">本拡張機能はビルド済みZIPを用意しているため、<strong>Node.jsやプログラミング環境がなくても誰でも30秒で導入できます。</strong></p>
+      
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
           <div class="step-body">
-            <h4>リポジトリのクローンまたはダウンロード</h4>
-            <pre>git clone https://github.com/nozomicreative/tokotter.git
-cd tokotter</pre>
+            <h4>ZIPファイルをダウンロード＆解凍</h4>
+            <p>
+              <a href="./tokotter-chrome.zip" download="tokotter-chrome.zip" style="font-weight: 700; text-decoration: underline;">👉 こちらをクリックしてZIP（tokotter-chrome.zip）をダウンロード</a>し、PC上のお好きなフォルダに解凍（展開）してください。
+            </p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
           <div class="step-body">
-            <h4>依存関係のインストールとビルド</h4>
-            <pre>npm install
-npm run build</pre>
-            <p>※ <code>.output/chrome-mv3</code> フォルダが生成されます。</p>
+            <h4>Chromeの拡張機能管理を開き、デベロッパーモードをON</h4>
+            <p>Google Chromeのアドレスバーに <code>chrome://extensions</code> と入力して開き、画面右上にある <strong>「デベロッパー モード」</strong> のトグルをONにします。</p>
           </div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <div class="step-body">
-            <h4>Chromeのデベロッパーモードで読み込み</h4>
-            <p>Chromeで <code>chrome://extensions</code> を開き、右上の「デベロッパーモード」をONにします。「パッケージ化されていない拡張機能を読み込む」をクリックし、生成された <code>.output/chrome-mv3</code> フォルダを選択すればインストール完了です。</p>
+            <h4>「パッケージ化されていない拡張機能を読み込む」を選択</h4>
+            <p>画面左上に現れる <strong>「パッケージ化されていない拡張機能を読み込む」</strong> ボタンをクリックし、先ほど解凍したフォルダ（<code>manifest.json</code> が入っているフォルダ）を選択します。これだけで完了です！</p>
           </div>
         </div>
       </div>
+
+      <details style="margin-top: 24px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 16px;">
+        <summary style="font-weight: 600; cursor: pointer; color: var(--deep);">開発者向け：ソースコードからビルドする場合</summary>
+        <div style="margin-top: 12px;">
+          <pre>git clone https://github.com/nozomicreative/tokotter.git
+cd tokotter
+npm install
+npm run build</pre>
+          <p style="font-size: 0.9rem; color: var(--muted); margin-top: 8px;">ビルド後に生成される <code>.output/chrome-mv3</code> フォルダを「パッケージ化されていない拡張機能を読み込む」で指定してください。</p>
+        </div>
+      </details>
     </section>
 
     <div class="creator-box">
