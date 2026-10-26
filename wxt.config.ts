@@ -9,7 +9,15 @@ export default defineConfig({
     description: '__MSG_extDescription__',
     default_locale: 'en',
     minimum_chrome_version: '116',
-    action: { default_title: 'Open tokotter' },
+    action: {
+      default_title: 'Open tokotter',
+      default_icon: {
+        '16': 'icons/16.png',
+        '32': 'icons/32.png',
+        '48': 'icons/48.png',
+        '128': 'icons/128.png',
+      },
+    },
     permissions: ['activeTab', 'scripting', 'sidePanel', 'storage', 'downloads'],
     side_panel: { default_path: 'sidepanel/index.html' },
   },
